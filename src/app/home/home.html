@@ -1,0 +1,75 @@
+<div class="bg-gray-50 p-6 sm:p-10 min-h-screen">
+  <div class="mx-auto max-w-6xl">
+
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900 tracking-tight">Inventario de Productos</h1>
+        <p class="text-sm text-gray-500 mt-1">Listado actualizado de tus existencias y precios.</p>
+      </div>
+
+      <button type="button"
+        class="inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-indigo-200 hover:bg-indigo-700 transition-all active:scale-95">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+          class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+        Agregar Producto
+      </button>
+    </div>
+
+    <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse text-left text-sm">
+          <thead class="bg-gray-50 border-b border-gray-200">
+            <tr>
+              <th class="px-6 py-4 font-semibold text-gray-600 uppercase text-xs tracking-wider">Producto</th>
+              <th class="px-6 py-4 font-semibold text-gray-600 uppercase text-xs tracking-wider">Categoría</th>
+              <th class="px-6 py-4 font-semibold text-gray-600 uppercase text-xs tracking-wider text-right">Costo</th>
+              <th class="px-6 py-4 font-semibold text-gray-600 uppercase text-xs tracking-wider text-right">Venta</th>
+              <th class="px-6 py-4 font-semibold text-gray-600 uppercase text-xs tracking-wider text-center">Stock</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            @for (product of products(); track product.name) {
+            <tr class="group hover:bg-indigo-50/30 transition-colors">
+              <td class="flex items-center gap-4 px-6 py-4">
+                <div class="h-12 w-12 flex-shrink-0 overflow-hidden rounded-xl border border-gray-200 shadow-sm">
+                  <img [src]="product.url_image" [alt]="product.name" class="h-full w-full object-cover">
+                </div>
+                <span class="font-semibold text-gray-800 group-hover:text-indigo-600 transition-colors">
+                  {{ product.name }}
+                </span>
+              </td>
+              <td class="px-6 py-4">
+                <span
+                  class="inline-flex items-center rounded-lg bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-200 uppercase tracking-tighter">
+                  {{ product.category }}
+                </span>
+              </td>
+              <td class="px-6 py-4 text-right text-gray-400 font-mono">
+                {{ product.price }}
+              </td>
+              <td class="px-6 py-4 text-right font-bold text-gray-900 font-mono">
+                {{ product.out_price }}
+              </td>
+              <td class="px-6 py-4 text-center">
+                <div
+                  class="inline-flex items-center justify-center rounded-full bg-indigo-50 px-3 py-1 text-xs font-bold text-indigo-700">
+                  {{ product.stock }} ud.
+                </div>
+              </td>
+            </tr>
+            } @empty {
+            <tr>
+              <td colspan="5" class="py-20 text-center">
+                <p class="text-gray-400 italic">No hay productos registrados aún.</p>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
