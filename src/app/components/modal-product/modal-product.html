@@ -41,66 +41,104 @@
 
         <label class="block text-sm font-medium text-gray-700 mb-1">Nombre del producto</label>
 
-        <input formControlName="name" type="text" name="nombre" required placeholder="Ej: Bandeja Paisa"
-          class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all placeholder:text-gray-400 " />
-
+        <input formControlName="name" type="text" name="nombre" placeholder="Ej: Bandeja Paisa"
+          class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all placeholder:text-gray-400 " />
+        @if (formProduct.get('name')?.hasError('required') && formProduct.get('name')?.touched) {
+        <p class="text-red-500 text-xs mt-1">El nombre es requerido.</p>
+        }
+        @if (formProduct.get('name')?.hasError('minlength') && formProduct.get('name')?.touched) {
+        <p class="text-red-500 text-xs mt-1">El nombre debe tener al menos 3 caracteres.</p>
+        }
       </div>
 
       <div>
 
         <label class="block text-sm font-medium text-gray-700 mb-1">Precio</label>
 
-        <input formControlName="price" type="number" name="price" required placeholder="Ej: 10000"
-          class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all placeholder:text-gray-400 " />
-
+        <input formControlName="price" type="number" name="price" placeholder="Ej: 10000"
+          class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all placeholder:text-gray-400 " />
+        @if (formProduct.get('price')?.hasError('required') && formProduct.get('price')?.touched) {
+        <p class="text-red-500 text-xs mt-1">El precio es requerido.</p>
+        }
+        @if (formProduct.get('price')?.hasError('min') && formProduct.get('price')?.touched) {
+        <p class="text-red-500 text-xs mt-1">El precio debe ser al menos 1.</p>
+        }
       </div>
 
       <div>
 
         <label class="block text-sm font-medium text-gray-700 mb-1">Precio de venta</label>
 
-        <input formControlName="out_price" type="number" name="out_price" required placeholder="Ej: 15000"
-          class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all placeholder:text-gray-400 " />
-
+        <input formControlName="out_price" type="number" name="out_price" placeholder="Ej: 15000"
+          class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all placeholder:text-gray-400 " />
+        @if (formProduct.get('out_price')?.hasError('required') && formProduct.get('out_price')?.touched) {
+        <p class="text-red-500 text-xs mt-1">El precio de venta es requerido.</p>
+        }
+        @if (formProduct.get('out_price')?.hasError('min') && formProduct.get('out_price')?.touched) {
+        <p class="text-red-500 text-xs mt-1">El precio de venta debe ser al menos 1.</p>
+        }
+        @if (formProduct.get('out_price')?.hasError('menor') && formProduct.get('out_price')?.touched) {
+        <p class="text-red-500 text-xs mt-1">El precio de venta no puede ser menor al precio original.</p>
+        }
       </div>
 
       <div>
 
         <label class="block text-sm font-medium text-gray-700 mb-1">Stock</label>
 
-        <input formControlName="stock" type="number" name="stock" required placeholder="Ej: 10"
-          class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all placeholder:text-gray-400 " />
-
+        <input formControlName="stock" type="number" name="stock" placeholder="Ej: 10"
+          class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all placeholder:text-gray-400 " />
+        @if (formProduct.get('stock')?.hasError('required') && formProduct.get('stock')?.touched) {
+        <p class="text-red-500 text-xs mt-1">El stock es requerido.</p>
+        }
+        @if (formProduct.get('stock')?.hasError('min') && formProduct.get('stock')?.touched) {
+        <p class="text-red-500 text-xs mt-1">El stock debe ser al menos 1.</p>
+        }
+        @if (formProduct.get('stock')?.hasError('max') && formProduct.get('stock')?.touched) {
+        <p class="text-red-500 text-xs mt-1">El stock máximo es 1000.</p>
+        }
       </div>
 
       <div>
 
         <label class="block text-sm font-medium text-gray-700 mb-1">Categoría</label>
 
-        <input formControlName="category" type="text" name="category" required placeholder="Ej: Botanas"
-          class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all placeholder:text-gray-400 " />
-
+        <select formControlName="category" name="category"
+          class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all bg-white">
+          <option value="" disabled selected>Selecciona una categoría</option>
+          <option value="Botanas">Botanas</option>
+          <option value="Platos principales">Platos principales</option>
+          <option value="Bebidas">Bebidas</option>
+          <option value="Postres">Postres</option>
+        </select>
+        @if (formProduct.get('category')?.hasError('required') && formProduct.get('category')?.touched) {
+        <p class="text-red-500 text-xs mt-1">La categoría es requerida.</p>
+        }
       </div>
 
       <div>
 
         <label class="block text-sm font-medium text-gray-700 mb-1">Url Imagen</label>
 
-        <input formControlName="image_url" type="text" name="image_url" required
-          placeholder="Ej: https://example.com/image.jpg"
-          class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all placeholder:text-gray-400 " />
-
+        <input formControlName="image_url" type="text" name="image_url" placeholder="Ej: https://example.com/image.jpg"
+          class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all placeholder:text-gray-400 " />
+        @if (formProduct.get('image_url')?.hasError('required') && formProduct.get('image_url')?.touched) {
+        <p class="text-red-500 text-xs mt-1">La URL de la imagen es requerida.</p>
+        }
       </div>
 
       <div>
 
         <label class="block text-sm font-medium text-gray-700 mb-1">Descripcion</label>
 
-        <textarea formControlName="description" name="description" required placeholder="Ej: Plato principal"
-          class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all placeholder:text-gray-400 ">
-
-            </textarea>
-
+        <textarea formControlName="description" name="description" placeholder="Ej: Plato principal"
+          class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all placeholder:text-gray-400 "></textarea>
+        @if (formProduct.get('description')?.hasError('required') && formProduct.get('description')?.touched) {
+        <p class="text-red-500 text-xs mt-1">La descripción es requerida.</p>
+        }
+        @if (formProduct.get('description')?.hasError('minlength') && formProduct.get('description')?.touched) {
+        <p class="text-red-500 text-xs mt-1">La descripción debe tener al menos 30 caracteres.</p>
+        }
       </div>
 
       <div class="flex items-center justify-end gap-3 pt-4">
