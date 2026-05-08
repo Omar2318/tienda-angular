@@ -1,8 +1,15 @@
 {
-    "angular-schematics.schematicsDefaultOptions": {
-        "angular-*": {
-            "externalTemplate": true,
-            "skipStyle": true
-        }
+  "angular-schematics.schematicsDefaultOptions": {
+    "angular-*": {
+      "externalTemplate": true,
+      "skipStyle": true
     }
+  },
+  "python-envs.pythonProjects": [
+    {
+      "path": "src/app/components",
+      "envManager": "ms-python.python:venv",
+      "packageManager": "ms-python.python:pip"
+    }
+  ]
 }

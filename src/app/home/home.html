@@ -1,3 +1,5 @@
+<app-modal-product #modalProduct />
+
 <div class="bg-gray-50 p-6 sm:p-10 min-h-screen">
   <div class="mx-auto max-w-6xl">
 
@@ -7,8 +9,8 @@
         <p class="text-sm text-gray-500 mt-1">Listado actualizado de tus existencias y precios.</p>
       </div>
 
-      <button type="button"
-        class="inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-indigo-200 hover:bg-indigo-700 transition-all active:scale-95">
+      <button (click)="modalProduct.open()" type="button"
+        class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-indigo-200 hover:bg-indigo-700 transition-all active:scale-95">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
           class="w-5 h-5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />

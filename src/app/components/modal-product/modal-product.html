@@ -1,0 +1,137 @@
+@if(openModal()) {
+<div (click)="close()" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
+
+  <div (click)="$event.stopPropagation()"
+    class="bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden animate-[fadeInScale_0.2s_ease-out]">
+
+    <div class="bg-linear-to-r from-orange-600 to-orange-500 px-6 py-5 flex items-center justify-between">
+
+      <div>
+
+        <h2 class="text-white text-xl font-bold tracking-tight">
+
+          Nuevo producto
+
+        </h2>
+
+        <p class="text-green-100 text-sm mt-0.5">Completa los datos del producto</p>
+
+      </div>
+
+      <button (click)="close()"
+        class="text-white/80 hover:text-white hover:bg-white/20 rounded-full p-1.5 transition-all duration-150">
+
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+
+        </svg>
+
+      </button>
+
+    </div>
+
+
+
+    <form [formGroup]="formProduct" (ngSubmit)="saveProduct()" class="px-6 py-5 space-y-4">
+
+
+
+      <div>
+
+        <label class="block text-sm font-medium text-gray-700 mb-1">Nombre del producto</label>
+
+        <input formControlName="name" type="text" name="nombre" required placeholder="Ej: Bandeja Paisa"
+          class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all placeholder:text-gray-400 " />
+
+      </div>
+
+      <div>
+
+        <label class="block text-sm font-medium text-gray-700 mb-1">Precio</label>
+
+        <input formControlName="price" type="number" name="price" required placeholder="Ej: 10000"
+          class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all placeholder:text-gray-400 " />
+
+      </div>
+
+      <div>
+
+        <label class="block text-sm font-medium text-gray-700 mb-1">Precio de venta</label>
+
+        <input formControlName="out_price" type="number" name="out_price" required placeholder="Ej: 15000"
+          class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all placeholder:text-gray-400 " />
+
+      </div>
+
+      <div>
+
+        <label class="block text-sm font-medium text-gray-700 mb-1">Stock</label>
+
+        <input formControlName="stock" type="number" name="stock" required placeholder="Ej: 10"
+          class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all placeholder:text-gray-400 " />
+
+      </div>
+
+      <div>
+
+        <label class="block text-sm font-medium text-gray-700 mb-1">Categoría</label>
+
+        <input formControlName="category" type="text" name="category" required placeholder="Ej: Botanas"
+          class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all placeholder:text-gray-400 " />
+
+      </div>
+
+      <div>
+
+        <label class="block text-sm font-medium text-gray-700 mb-1">Url Imagen</label>
+
+        <input formControlName="image_url" type="text" name="image_url" required
+          placeholder="Ej: https://example.com/image.jpg"
+          class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all placeholder:text-gray-400 " />
+
+      </div>
+
+      <div>
+
+        <label class="block text-sm font-medium text-gray-700 mb-1">Descripcion</label>
+
+        <textarea formControlName="description" name="description" required placeholder="Ej: Plato principal"
+          class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition-all placeholder:text-gray-400 ">
+
+            </textarea>
+
+      </div>
+
+      <div class="flex items-center justify-end gap-3 pt-4">
+
+        <button type="button" (click)="close()"
+          class="px-4 py-2.5 rounded-xl text-sm font-semibold bg-gray-100 hover:bg-gray-200 transition-all duration-150">
+
+          Cancelar
+
+        </button>
+
+        <button type="submit"
+          class="px-4 py-2.5 rounded-xl text-sm font-semibold bg-orange-500 hover:bg-orange-600 text-white transition-all duration-150">
+
+          Guardar producto
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+
+
+
+
+
+
+
+
+</div>
+}

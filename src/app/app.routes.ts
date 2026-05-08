@@ -8,12 +8,12 @@ export const routes: Routes = [
   {
     path: 'login',
     component: Login,
-    canActivate: [LoginGuard],
+    //canActivate: [LoginGuard],
   },
   {
     path: 'home',
     component: Home,
-    canActivate: [authGuard],
+    //canActivate: [authGuard],
   },
   {
     path: '**',

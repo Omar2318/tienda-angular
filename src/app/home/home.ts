@@ -2,10 +2,11 @@ import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@ang
 import { Product } from './interfaces/product.interface';
 import { Supabase } from '../services/supabase';
 import { Products } from '../services/products';
+import { ModalProduct } from '../components/modal-product/modal-product';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [ModalProduct],
   templateUrl: './home.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
