@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal, output } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Products } from '../../services/products';
 
 @Component({
   selector: 'app-modal-product',
@@ -15,8 +16,11 @@ import {
 })
 export class ModalProduct {
   private fb = inject(FormBuilder);
+  private productsService = inject(Products);
+
   formProduct: FormGroup;
   openModal = signal(false);
+  productSaved = output<void>();
 
   constructor() {
     this.formProduct = this.fb.group(
@@ -64,7 +68,30 @@ export class ModalProduct {
 
   close() {
     this.openModal.set(false);
+    this.formProduct.reset();
   }
 
-  saveProduct() {}
+  async saveProduct() {
+    if (this.formProduct.invalid) {
+      this.formProduct.markAllAsTouched();
+      return;
+    }
+
+    const newProduct = {
+      name: this.formProduct.value.name,
+      price: this.formProduct.value.price,
+      out_price: this.formProduct.value.out_price,
+      stock: this.formProduct.value.stock,
+      category: this.formProduct.value.category,
+      url_image: this.formProduct.value.image_url,
+      description: this.formProduct.value.description,
+    };
+
+    const result = await this.productsService.insertProduct(newProduct);
+
+    if (result) {
+      this.close();
+      this.productSaved.emit();
+    }
+  }
 }
